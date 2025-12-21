@@ -2,12 +2,14 @@
 
 **Voting functionality**
 
-1.user signin /signup
-2.see the list of candidate
-3.vote one of the candidate, after voting,user cant vote again 
-4.There is a route which shows the list of candidates and their live votee counts sorted by their votesd.
-5.User data must contain their one uniue government id proof named : adhar card number
-6.There should be one admin who can only maintain the table of candidates and he cant able to vote all
-7.User can change their password
-8.User can login only with adhar card number and password.
+## Features
+
+- **User Authentication**: Sign in/sign up with Aadhar card number and password
+- **Candidate Management**: View list of all candidates with live vote counts
+- **Voting System**: Cast one vote per user; voting restrictions enforced after initial vote
+- **Live Results**: Real-time leaderboard showing candidates sorted by vote count
+- **User Verification**: Aadhar card number required for user identity validation
+- **Admin Panel**: Dedicated admin role for candidate table maintenance (voting disabled)
+- **Password Management**: Users can update their password anytime
+
 
