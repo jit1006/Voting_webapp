@@ -11,6 +11,7 @@ A secure voting application with real-time results and admin management.
 - **User Verification**: Aadhar card number required for user identity validation
 - **Admin Panel**: Dedicated admin role for candidate table maintenance (voting disabled)
 - **Password Management**: Users can update their password anytime
+- admin cant vote at all.
 
 ## API Routes
 
