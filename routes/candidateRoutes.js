@@ -86,11 +86,13 @@ router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res) => {
     //get candidate id by the parameter
     try {
         const candidateID = req.params.candidateID;
+        //reading user id through token
         const userId = req.user.id;
         if (await checkAdminRole(userId)) {
             return res.status(403).json({ message: "user should be a voter" });
         }
-        let userIsVoted = user.isVoted;
+        const User = await user.findById(userId);
+        let userIsVoted = User.isVoted;
         if (userIsVoted) {
             return res.status(400).json({ message: "You have already voted" });
         }
@@ -105,7 +107,7 @@ router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res) => {
         //save the candidate updated data
         await Candidate.save();
         //save the user updated data
-        await user.save();
+        await User.save();
         console.log("user voted successfully")
         res.status(200).json({ message: "user voted successfully" });
     } catch (err) {
@@ -113,20 +115,6 @@ router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res) => {
         return res.status(500).json({ error: "Internal server error" });
     }
 })
-// //individual vote count
-// router.get('/Vote/count/:candidateId', jwtAuthMiddleware, async (req, res) => {
-//     try {
-//         const candidateId = req.params.candidateId;
-//         const Candidate = await candidate.findById(candidateId);
-//         if (!Candidate) {
-//             return res.status(404).json({ message: "Candidate not found" })
-//         }
-//         // console.log(`Total vote count =${Candidate.voteCount}`)
-//         res.status(200).json({ Total_Vote: Candidate.voteCount });
-//     } catch (err) {
-//         res.status(500).json({ message: "Interal Server Error" });
-//     }
-// })
 
 router.get('/vote/count', async (req, res) => {
     try {
@@ -146,6 +134,7 @@ router.get('/vote/count', async (req, res) => {
         res.status(500).json({ message: "Interal Server Error" });
     }
 })
+
 
 
 export default router;
