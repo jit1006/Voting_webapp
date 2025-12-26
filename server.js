@@ -1,5 +1,22 @@
 import express from 'express';
+const app = express();
+import { db } from './db.js';
+import { configDotenv } from 'dotenv';
+configDotenv();
+const PORT = process.env.PORT || 3302
 
-app.listing(3300){
-    console.log("s");
-};
+
+// middleware body-parser (use built-in express.json)
+app.use(express.json());  // object name ->  req.body
+
+//import the router files
+import userRoutes from './routes/userRoutes.js';
+import candidateRoutes from './routes/candidateRoutes.js';
+
+// use the routes
+app.use('/user', userRoutes);
+app.use('/candidate', candidateRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Listening on port : ${PORT}`);
+})
