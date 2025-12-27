@@ -2,12 +2,14 @@ import express from 'express';
 const app = express();
 import { db } from './db.js';
 import { configDotenv } from 'dotenv';
+import cors from 'cors';
 configDotenv();
 const PORT = process.env.PORT || 3302
 
 
 // middleware body-parser (use built-in express.json)
 app.use(express.json());  // object name ->  req.body
+app.use(cors());
 
 //import the router files
 import userRoutes from './routes/userRoutes.js';

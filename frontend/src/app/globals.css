@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 240 30% 98%;
+    --foreground: 240 10% 30%;
+
+    --primary: 260 80% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 170 70% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 330 80% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 20%;
+
+    --border: 240 10% 90%;
+    --input: 240 10% 90%;
+    --ring: 260 80% 65%;
+
+    --radius: 1rem;
+    --font-outfit: system-ui;
+    /* Fallback */
+  }
+
+  .dark {
+    --background: 240 20% 10%;
+    --foreground: 0 0% 95%;
+
+    --primary: 260 80% 70%;
+    --secondary: 170 70% 50%;
+
+    --card: 240 20% 15%;
+    --card-foreground: 0 0% 95%;
+
+    --border: 240 20% 25%;
+    --input: 240 20% 25%;
+  }
+
+  * {
+    border-color: hsl(var(--border) / 0.2);
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-outfit), sans-serif;
+  }
+}
+
+/* Glassmorphism */
+.glass {
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.dark .glass {
+  background-color: rgb(0 0 0 / 0.3);
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.glass-card {
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  @apply rounded-2xl hover:shadow-xl transition-all duration-300;
+}
+
+.dark .glass-card {
+  background-color: rgb(0 0 0 / 0.3);
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}

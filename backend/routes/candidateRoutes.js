@@ -103,7 +103,7 @@ router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res) => {
         //update the candidate document and record the vote
         Candidate.votes.push({ user: userId });
         Candidate.voteCount++;
-        userIsVoted = true;
+        User.isVoted = true;
         //save the candidate updated data
         await Candidate.save();
         //save the user updated data
@@ -123,6 +123,7 @@ router.get('/vote/count', async (req, res) => {
         //map the candidate to only return their name and vote count 
         const voteRecord = Candidate.map((data) => {
             return {
+                id: data._id,
                 name: data.name,
                 party: data.party,
                 count: data.voteCount

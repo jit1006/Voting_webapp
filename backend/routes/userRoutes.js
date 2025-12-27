@@ -24,6 +24,12 @@ router.post('/signup', async (req, res) => {
         res.status(200).json({ response: response, token: token });
     } catch (err) {
         console.log(err);
+        if (err.code === 11000) {
+            return res.status(400).json({ error: "Aadhar Card Number already exists" });
+        }
+        if (err.name === 'ValidationError') {
+            return res.status(400).json({ error: err.message });
+        }
         res.status(500).json({ error: "Internal server error while saving person data" });
     }
 })
