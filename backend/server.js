@@ -9,7 +9,14 @@ const PORT = process.env.PORT || 3302
 
 // middleware body-parser (use built-in express.json)
 app.use(express.json());  // object name ->  req.body
-app.use(cors());
+app.use(cors({
+    origin:[
+        'http://localhost:5173',          // For local development
+        'https://voting-webapp.vercel.app/'      // Replace with your actual Vercel URL
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true // Required if you are sending cookies or specialized headers
+}));
 
 //import the router files
 import userRoutes from './routes/userRoutes.js';
