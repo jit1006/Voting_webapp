@@ -18,20 +18,6 @@ A secure, real-time voting application built with the MERN stack (MongoDB, Expre
 - **Live Results**: Real-time leaderboard updates.
 - **Secure Voting**: Prevents multiple votes per user.
 - **Responsive Design**: Modern UI with Tailwind CSS and Framer Motion animations.
-
-## 📊 System Architecture
-
-```mermaid
-graph TD
-    User[User / Voter] -->|HTTPS| Frontend[Next.js Frontend\n(Vercel)]
-    Frontend -->|API Calls| Backend[Express Backend\n(Render)]
-    Backend -->|Read/Write| DB[(MongoDB Atlas)]
-    
-    subgraph Security
-        Backend -- Authenticates --> JWT[JWT Token]
-    end
-```
-
 ## 🗳️ Voting Process
 
 ```mermaid
